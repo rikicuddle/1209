@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My POV</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #202027;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+
+    .phone {
+      width: 320px;
+      height: 620px;
+      max-width: 94vw;
+      max-height: 90vh;
+      border: 6px solid #555;
+      border-radius: 38px;
+      overflow: hidden;
+      position: relative;
+      background: #161622;
+    }
+
+    .screen {
+      height: 100%;
+      padding: 25px 18px;
+      text-align: center;
+      background: linear-gradient(
+        160deg, #8c9fc9, #393b60, #151522
+      );
+    }
+
+    .status {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+    }
+
+    .clock {
+      margin-top: 100px;
+      font-size: 58px;
+      font-weight: bold;
+    }
+
+    .date {
+      margin-top: 8px;
+    }
+
+    .hint {
+      margin-top: 100px;
+      font-size: 13px;
+    }
+
+    button {
+      border: 0;
+      padding: 13px 24px;
+      border-radius: 24px;
+      background: white;
+      color: #272741;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .home {
+      display: none;
+      height: 100%;
+      padding: 24px 16px;
+      background: linear-gradient(#c3cbe4, #777eaa);
+      color: #202033;
+    }
+
+    .home h2 {
+      margin-top: 35px;
+    }
+
+    .app {
+      display: inline-block;
+      margin: 12px 5px;
+      padding: 15px 10px;
+      background: #ffffffcc;
+      border-radius: 16px;
+      cursor: pointer;
+    }
+
+    .chat {
+      display: none;
+      margin-top: 25px;
+      padding: 15px;
+      border-radius: 15px;
+      background: white;
+      text-align: left;
+    }
+
+    .bubble {
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 12px;
+      background: #e4e7f8;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="phone">
+
+    <section class="screen" id="lock">
+      <div class="status">
+        <span>My POV</span>
+        <span>●●●  Wi-Fi</span>
+      </div>
+
+      <div class="clock" id="clock">00:00</div>
+      <div class="date">Welcome to my world ♡</div>
+
+      <div class="hint">
+        Your little world awaits...
+      </div>
+
+      <button onclick="unlock()">Buka HP ↗</button>
+    </section>
+
+    <section class="home" id="home">
+      <div>●●● &nbsp; Wi-Fi &nbsp; 🔋</div>
+      <h2>My little world ♡</h2>
+      <p>Choose an app</p>
+
+      <div class="app" onclick="openChat()">
+        💬<br>Messages
+      </div>
+
+      <div class="app" onclick="showAbout()">
+        🌷<br>About me
+      </div>
+
+      <div class="chat" id="chat">
+        <b>Messages ♡</b>
+        <div class="bubble">Hii, welcome to my POV!</div>
+        <div class="bubble">This is my little world ✨</div>
+        <button onclick="closeChat()">Back</button>
+      </div>
+
+      <div class="chat" id="about">
+        <b>About me 🌷</b>
+        <p>A little space made with love.</p>
+        <button onclick="closeChat()">Back</button>
+      </div>
+
+      <button onclick="lockAgain()">Kunci HP</button>
+    </section>
+
+  </div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      document.getElementById("clock").textContent =
+        now.toLocaleTimeString("id-ID", {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false
+        });
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    function unlock() {
+      document.getElementById("lock").style.display = "none";
+      document.getElementById("home").style.display = "block";
+    }
+
+    function lockAgain() {
+      closeChat();
+      document.getElementById("home").style.display = "none";
+      document.getElementById("lock").style.display = "block";
+    }
+
+    function openChat() {
+      document.getElementById("chat").style.display = "block";
+      document.getElementById("about").style.display = "none";
+    }
+
+    function showAbout() {
+      document.getElementById("about").style.display = "block";
+      document.getElementById("chat").style.display = "none";
+    }
+
+    function closeChat() {
+      document.getElementById("chat").style.display = "none";
+      document.getElementById("about").style.display = "none";
+    }
+  </script>
+</body>
+</html>
